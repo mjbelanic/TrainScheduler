@@ -1,3 +1,7 @@
+table{
+	margin: 0 auto;
+}
+
 th , td{
 	color:white;
 	border: 1px solid white;
@@ -18,6 +22,10 @@ th , td{
 .panel{
 	background-color: black;
 	color: white;
+}
+
+.panel-heading{
+	text-align: center;
 }
 
 .btn{

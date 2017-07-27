@@ -28,7 +28,6 @@ var trainName = "";
 var trainDestination = "";
 var trainStartTime = "";
 var trainFrequency = "";
-var nextArrival;
 var minAway;
 
 
@@ -47,7 +46,7 @@ var minAway;
   			trainName: trainName,
         	trainDestination: trainDestination,
         	trainStartTime: trainStartTime,
-        	trainFrequency: trainFrequency,
+        	trainFrequency: trainFrequency
   		});
 
   });
@@ -68,6 +67,7 @@ var minAway;
     tableFrequency = $("<td>");
     tableNArrive = $("<td>");
     tableMAway = $("<td>");
+    tableMAway.addClass("minAway");
 
     //Append the <td> we just made to the <tr>
     row.append(tableName);
@@ -78,10 +78,15 @@ var minAway;
 
     //Calculate months and train times
     var firstTimeConverted = moment(trainStartTime, "HH:mm").subtract(1, "years");
+    console.log(firstTimeConverted);
+
     var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+
     var timeRemaining = diffTime % trainFrequency;
+
     minAway = trainFrequency - timeRemaining;
-    nextArrival = moment().add(minAway, "minutes");
+
+    var nextArrival = moment().add(minAway, "minutes");
 
     tableNArrive.html(moment(nextArrival).format("hh:mm a"));
     tableMAway.html(minAway);
@@ -97,20 +102,22 @@ var minAway;
   });
 
 
-var subtractTime = function(){
-	minAway = moment(minAway).subtract(1, 'minutes');
-    .html(minAway)
+var subtractTime = function(value){
+	var min = parseInt(value) - 1;
+    return min;
 }
 
 var updateMinAway = function(){
-	if(minAway !== '1' || 'HERE'){
-		subtractTime();
-	}else if(minAway === '1'){
-		$("#minAway").html('HERE');
-	}else{
-		$("#minAway").html(trainFrequency);
-	}
-}
+	$(".minAway").each(function(){
+		if($(this).html().trim() !== '1' && $(this).html().trim() !== "HERE"){
+			$(this).html(subtractTime($(this).html()));
+		}else if($(this).html().trim() === '1'){
+			$(this).html("HERE");
+		}else{
+			$(this).html(trainFrequency);
+		}
+	});
+};
 
 datetime = $('#dateTime')
 update();
