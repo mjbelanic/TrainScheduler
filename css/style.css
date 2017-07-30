@@ -1,12 +1,25 @@
-table{
-	margin: 0 auto;
+.splitflap {
+    margin: 0 auto;
+
+    -webkit-perspective-origin: top center;
+    -moz-perspective-origin: top center;
+    -ms-perspective-origin: top center;
+    perspective-origin: top center;
+
+/*    -webkit-perspective: 900px;
+    -moz-perspective: 900px;
+    -ms-perspective: 900px;
+    perspective: 900px;*/
 }
 
-th , td{
+th , td, div.flapper.xs{
 	color:white;
 	border: 1px solid white;
-	padding: 10px;
 	text-align: center;
+}
+
+td .flapper{
+	padding: 5px;
 }
 
 .jumbotron{

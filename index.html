@@ -4,13 +4,16 @@
 	<title>Train Scheduler</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/flapper.css">
+
 </head>
 <body>
 	<div class="container">
 		<div class="jumbotron">
-			<h1 class="text-center">Train Scheduler</h1>
-			<h2>The Current Time is: </h2>
-			<p id="dateTime"></p>
+			<h1 class="text-center flapper l"></h1>
+			<h2 class="flapper m"></h2>
+			<br/>
+			<p class="flapper m" id="dateTime"></p>
 		</div>
 		
 		<!--PANEL 1-->
@@ -27,6 +30,7 @@
 								<tr>
 									<th>Train Name</th>
 									<th>Destination</th>
+									<th>Start Time</th>
 									<th>Frequency (min)</th>
 									<th>Next Arrival</th>
 									<th>Minutes Away</th>
@@ -72,14 +76,14 @@
 		</div>
 
 	</div>
-	<script src="https://cdn.jsdelivr.net/momentjs/2.18.1/moment.min.js"></script>
-	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="javascript/jquery.transform-0.9.3.min.js"></script>
+    <script src="javascript/jshashtable.js"></script>
+    <script src="javascript/jquery.numberformatter-1.2.3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.18.1/moment.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script src="jquery-splitFlap-master/demo/js/jquery/jquery.splitflap.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.1.5/firebase.js"></script>
 	<script src="javascript/app.js"></script>
-<script>
-
-
-
-</script>
 </body>
 </html>
