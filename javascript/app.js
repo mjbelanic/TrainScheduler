@@ -101,31 +101,33 @@ var trainFrequency = "";
     tableMAway.html(minAway);
 
     //This inputs the snapshot values into the table cells
-    tableName.flapper({width: 11}).val(snapshot.val().trainName).change();
-    tableDestination.flapper({width: 8}).val(snapshot.val().trainDestination).change();
+    tableName.flapper({width: snapshot.val().trainName.length}).val(snapshot.val().trainName).change();
+    tableDestination.flapper({width: snapshot.val().trainDestination.length}).val(snapshot.val().trainDestination).change();
     tableSTime.flapper({width: 5}).val(snapshot.val().trainStartTime).change();
-    tableFrequency.flapper({width: 4}).val(snapshot.val().trainFrequency).change();
+    tableFrequency.flapper({width: snapshot.val().trainFrequency.length}).val(snapshot.val().trainFrequency).change();
   } , function(error){
     console.log(error);
   });
 
+
+//NEED TO FIX UPDATE ISSUE WITH HERE
 var updateMinAway = function(){
 	$(".minAway").each(function(){
-		if($(this).html().trim() === "HERE"){
+    var frequency = parseInt($(this).closest('tr').children('.frequency').attr("data-val"));
+    var firstTimeConverted = moment($(this).closest('tr').children('.startTime').attr("data-val"), "HH:mm").subtract(1, "years");
+    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+    var timeRemaining = diffTime % frequency;
+    var minAway = frequency - timeRemaining;
+		if($(this).html().trim() === "HERE" && timeRemaining !== 0){
       $(this).html($(this).closest('tr').children('.frequency').attr("data-val"));
-      var frequency = parseInt($(this).closest('tr').children('.frequency').attr("data-val"));
-      var newArrival = moment().add(frequency , "minutes").format("hh:mm a");
+      var newArrival = moment().add(frequency , "minutes").subtract(1 , 'minutes').format("hh:mm a");
       $(this).closest('tr').children('.nextArrival').html(newArrival);
       $(this).html(minAway);
-		}else if($(this).html().trim() === '0'){
-			$(this).html("HERE");
-		}else{
-      var firstTimeConverted = moment($(this).closest('tr').children('.startTime').attr("data-val"), "HH:mm");
-      var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-      var timeRemaining = diffTime % trainFrequency;
-      var minAway = trainFrequency - timeRemaining;
+		}else if(timeRemaining === 0){
+      $(this).html('HERE');
+    }else{
       $(this).html(minAway);
-		}
+     }
 	});
 };
 

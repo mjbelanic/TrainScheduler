@@ -1,15 +1,5 @@
-.splitflap {
-    margin: 0 auto;
-
-    -webkit-perspective-origin: top center;
-    -moz-perspective-origin: top center;
-    -ms-perspective-origin: top center;
-    perspective-origin: top center;
-
-/*    -webkit-perspective: 900px;
-    -moz-perspective: 900px;
-    -ms-perspective: 900px;
-    perspective: 900px;*/
+body{
+	background-color: #2f2f2f;
 }
 
 th , td, div.flapper.xs{
@@ -32,9 +22,15 @@ td .flapper{
 	font-size: 50px;
 }
 
+table{
+	margin: 0 auto;
+}
+
 .panel{
 	background-color: black;
 	color: white;
+	border-style: solid;
+	border-color: gray;
 }
 
 .panel-heading{
